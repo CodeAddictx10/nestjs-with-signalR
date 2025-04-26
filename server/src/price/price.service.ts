@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { TPrice } from 'src/types';
-import { simulateRandomWalk } from 'src/util/helper';
+import { now, simulateRandomWalk } from 'src/util/helper';
 
 @Injectable()
 export class PriceService {
@@ -25,7 +25,7 @@ export class PriceService {
         ...item,
         price: newPrice,
         isIncremental: newPrice > item.price,
-        timestamp: new Date().toISOString(),
+        timestamp: now(),
       };
     });
   }

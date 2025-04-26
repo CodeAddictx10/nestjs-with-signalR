@@ -1,8 +1,4 @@
-import {
-  SubscribeMessage,
-  WebSocketGateway,
-  WebSocketServer,
-} from '@nestjs/websockets';
+import { WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
 import { Server } from 'socket.io';
 import { PriceService } from './price.service';
 
@@ -16,8 +12,7 @@ export class PriceGateway {
   @WebSocketServer()
   server: Server;
 
-  @SubscribeMessage('message')
   handleMessage(): void {
-    this.server.emit('new-price', this.priceService.simulatePrices());
+    this.server.emit('newprice', this.priceService.simulatePrices());
   }
 }

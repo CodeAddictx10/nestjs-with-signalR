@@ -5,3 +5,7 @@ export function simulateRandomWalk(price: number): number {
   const fluctuation = percentChange / 100;
   return Number((price * (1 + fluctuation)).toFixed(2));
 }
+
+export function now(): string {
+  return new Date().toISOString().split('.')[0] + 'Z';
+}
