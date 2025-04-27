@@ -9,8 +9,6 @@ if (!import.meta.env.VITE_WEBSOCKET_SERVER_URL) {
     );
 }
 
- const socket = io(import.meta.env.VITE_WEBSOCKET_SERVER_URL);
-
 export default function Socketio() {
     const [prices, setPrices] = useState<IData[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -19,6 +17,7 @@ export default function Socketio() {
     );
 
     useEffect(() => {
+        const socket = io(import.meta.env.VITE_WEBSOCKET_SERVER_URL);
         socket.on("connect", () => {
             setHasDisconnected(false);
         });

@@ -29,6 +29,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapHub<PriceHub>("price-hub");
+app.MapHub<PriceHub>("hub");
 
 app.Run();

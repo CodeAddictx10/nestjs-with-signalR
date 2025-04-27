@@ -14,7 +14,6 @@ export class SignalRIoAdapter extends IoAdapter {
   constructor(private app: INestApplicationContext) {
     super(app);
     this.serverUrl = process.env.SIGNALR_SERVER_URL!;
-
     if (!this.serverUrl) {
       throw new Error('SignalR server url is not set');
     }
@@ -23,7 +22,7 @@ export class SignalRIoAdapter extends IoAdapter {
   createIOServer(port: number, options?: any): any {
     // Initialize SignalR Hub
     const hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl(this.serverUrl)
+      .withUrl(`${this.serverUrl}/hub`)
       .withAutomaticReconnect([5000, 10000, 60000, 600000])
       .configureLogging(signalR.LogLevel.Information)
       .build();

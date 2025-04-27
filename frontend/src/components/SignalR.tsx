@@ -19,7 +19,7 @@ export default function SignalR() {
                 );
             }
             const connection = new signalR.HubConnectionBuilder()
-                .withUrl(hubUrl)
+                .withUrl(`${hubUrl}/hub`)
                 .withAutomaticReconnect([5000, 10000, 60000, 600000])
                 .configureLogging(signalR.LogLevel.Information)
                 .build();
