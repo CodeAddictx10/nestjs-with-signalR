@@ -1,11 +1,17 @@
 [Read Project Technical Document](https://docs.google.com/document/d/1A7X7TVEKNUqQRa-jc-Is4bqRTHjnsjyg8ZBmHfiHjpk/edit?usp=sharing)
 
+https://github.com/user-attachments/assets/4cd3f9bd-dda1-4c59-b81b-78ca6a355b58
+
 # Project Setup Guide
 
 This project has three parts:
 - **Frontend** → Vite + React
 - **Backend** → NestJS (Node.js)
 - **SignalR Hub** → .NET 8
+
+
+
+
 
 **Follow these steps to set up and run everything locally.**
 
