@@ -1,11 +1,16 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { PriceGateway } from './price/price.gateway';
 import { Interval } from '@nestjs/schedule';
+import { PriceService } from './price/price.service';
+import { TPrice } from './types';
 
 @Injectable()
 export class AppService {
   private readonly logger = new Logger(AppService.name);
-  constructor(private readonly gateway: PriceGateway) {}
+  constructor(
+    private readonly gateway: PriceGateway,
+    private readonly priceService: PriceService,
+  ) {}
   @Interval(5000)
   updatePrice(): void {
     try {
@@ -17,7 +22,7 @@ export class AppService {
     }
   }
 
-  getHello(): string {
-    return 'Hello World!';
+  getPrices(): TPrice[] {
+    return this.priceService.simulatePrices();
   }
 }

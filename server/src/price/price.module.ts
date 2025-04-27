@@ -4,6 +4,6 @@ import { PriceService } from './price.service';
 
 @Module({
   providers: [PriceGateway, PriceService],
-  exports: [PriceGateway],
+  exports: [PriceGateway, PriceService],
 })
 export class PriceModule {}

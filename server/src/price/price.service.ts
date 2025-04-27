@@ -17,7 +17,7 @@ export class PriceService {
     { symbol: 'AVAXUSD', price: 38.7 },
   ];
 
-  simulatePrices(): Record<string, any>[] {
+  simulatePrices(): TPrice[] {
     return this.prices.map((item) => {
       const newPrice = simulateRandomWalk(item.price);
 

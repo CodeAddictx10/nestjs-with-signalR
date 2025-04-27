@@ -39,7 +39,7 @@ export default function PriceContainer({
 
             {prices.length < 1 ? (
                 <div className="bg-amber-50 border border-amber-200 text-amber-800 px-4 py-2 rounded-md mb-6 text-center animate-pulse">
-                    Waiting for prices updates...
+                    No price updates now, please check back later for updates...
                 </div>
             ) : (
                 <>

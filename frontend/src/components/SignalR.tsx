@@ -88,6 +88,18 @@ export default function SignalR() {
         };
     }, [startConnection, stopConnection]);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await fetch(
+                `${import.meta.env.VITE_BACKEND_SERVER_URL}/api/prices`,
+            );
+            if (result.ok) {
+                setPrices(await result.json());
+            }
+        };
+        fetchData();
+    }, []);
+
     return (
         <PriceContainer
             prices={prices}

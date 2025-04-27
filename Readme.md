@@ -88,7 +88,7 @@ cp .env.example .env
 ```
 
 - Update the `VITE_SIGNALR_SERVER_URL` value to the url of the signalR  server
-- Update the `VITE_WEBSOCKET_SERVER_URL` value to the url of the backend server
+- Update the `VITE_BACKEND_SERVER_URL` value to the url of the backend server
 - Set the `REAL_TIME_MODE` value to `signalr`
 ---
 

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { io } from "socket.io-client";
 import PriceContainer from "./PriceContainer";
 import { IData } from "../types";
+import { io } from "socket.io-client";
 
-if (!import.meta.env.VITE_WEBSOCKET_SERVER_URL) {
+if (!import.meta.env.VITE_BACKEND_SERVER_URL) {
     throw new Error(
         "Websocket sever url is missing in the environment vairable",
     );
@@ -17,7 +17,7 @@ export default function Socketio() {
     );
 
     useEffect(() => {
-        const socket = io(import.meta.env.VITE_WEBSOCKET_SERVER_URL);
+        const socket = io(import.meta.env.VITE_BACKEND_SERVER_URL);
         socket.on("connect", () => {
             setHasDisconnected(false);
         });
@@ -39,6 +39,18 @@ export default function Socketio() {
             socket.off("disconnected");
             socket.off("newprice");
         };
+    }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await fetch(
+                `${import.meta.env.VITE_BACKEND_SERVER_URL}/api/prices`,
+            );
+            if (result.ok) {
+                setPrices(await result.json());
+            }
+        };
+        fetchData();
     }, []);
 
     return (
