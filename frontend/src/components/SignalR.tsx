@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import * as signalR from "@microsoft/signalr";
-import { IData } from "./App";
-import PriceContainer from "./components/PriceContainer";
+import PriceContainer from "./PriceContainer";
+import { IData } from "../types";
 
 export default function SignalR() {
     const [prices, setPrices] = useState<IData[]>([]);

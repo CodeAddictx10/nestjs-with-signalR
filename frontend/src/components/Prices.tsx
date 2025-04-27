@@ -1,6 +1,6 @@
 import { CandlestickChart, RefreshCwIcon } from "lucide-react";
 import { CryptoIcon } from "./CryptoIcon";
-import { IData } from "../App";
+import { IData } from "../types";
 
 type IProps = {
     prices: IData[];
@@ -9,6 +9,7 @@ type IProps = {
 };
 
 export default function Prices({prices, hasDisconnected, isLoading}: IProps) {
+
     return (
         <div className="container mx-auto py-8">
             <div className="flex flex-col items-center justify-center mb-8">

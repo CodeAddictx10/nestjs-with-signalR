@@ -1,58 +1,17 @@
-import { useEffect, useState } from "react";
-import { io } from "socket.io-client";
-import PriceContainer from "./components/PriceContainer";
+import SignalR from "./components/SignalR";
+import Socketio from "./components/Socketio";
 
-export type IData = {
-    symbol: string;
-    price: number;
-    isIncremental?: boolean;
-    timestamp?: string;
-};
-
-if (!import.meta.env.VITE_WEBSOCKET_SERVER_URL) {
-    throw new Error(
-        "Websocket sever url is missing in the environment vairable",
-    );
-}
-
-const socket = io(import.meta.env.VITE_WEBSOCKET_SERVER_URL);
+const REAL_TIME_MODE = import.meta.env.VITE_REAL_TIME_MODE;
 
 export default function App() {
-    const [prices, setPrices] = useState<IData[]>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [hasDisconnected, setHasDisconnected] = useState<boolean | undefined>(
-        undefined,
-    );
+    if (!REAL_TIME_MODE) {
+        throw new Error(
+            "Real time mode vairable is not set in the environment",
+        );
+    }
 
-    useEffect(() => {
-        socket.on("connect", () => {
-            setHasDisconnected(false);
-        });
+    if (REAL_TIME_MODE === "socketio") return <Socketio />;
+    if (REAL_TIME_MODE === "signalr") return <SignalR />;
 
-        socket.on("disconnect", () => {
-            setHasDisconnected(true);
-        });
-
-        socket.on("new-price", (data: unknown) => {
-            setIsLoading(true);
-            setPrices(data as IData[]);
-            setTimeout(() => {
-                setIsLoading(false);
-            }, 2000);
-        });
-
-        return () => {
-            socket.off("connect");
-            socket.off("disconnected");
-            socket.off("new-price");
-        };
-    });
-
-    return (
-        <PriceContainer
-            prices={prices}
-            isLoading={isLoading}
-            hasDisconnected={hasDisconnected}
-        />
-    );
+    return <p className="text-center">The real time mode set in the env is invalid</p>;
 }
