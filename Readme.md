@@ -112,7 +112,8 @@ By now, the app should be running successfully, if you navigate to the frontend 
 ---
 ---
 ## Common Errors
-- CORS Error on the frontend app: This is mostly caused when the frontend url is not running on the any of URLs set in the **signalr/Program.cs on line 12**. Add the frontend url and re run the server again.
+- CORS Error on the frontend app when connecting to signalR server: This is mostly caused when the frontend url is not included in the origins set in the **signalr/Program.cs on line 12**. Add the frontend url and re run the server again.
+- CORS Error on the frontend app when connecting to backend server: This is also caused when the frontend url is not included in the origin set in **server/main.ts on line 8**. Add the frontend url and re run the server again.
 ---
 ## Misc.
 
